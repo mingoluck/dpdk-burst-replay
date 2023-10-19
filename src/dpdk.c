@@ -334,6 +334,7 @@ int tx_thread(void* thread_ctx)
                                            (tx_queue++ % NB_TX_QUEUES),
                                            &(mbuf[index + total_sent]),
                                            to_sent - total_sent);
+                usleep(1);
                 if (retry_tx != NB_RETRY_TX &&
                     tx_queue % NB_TX_QUEUES == 0)
                     usleep(100);
