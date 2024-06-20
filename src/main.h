@@ -36,6 +36,8 @@
       && defined RTE_VER_MONTH && RTE_VER_MONTH >= month) \
      || defined RTE_VER_YEAR && RTE_VER_YEAR >= year)
 
+extern int rounds;
+
 /* struct to store the command line args */
 struct cmd_opts {
     char**          pcicards;

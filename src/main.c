@@ -14,6 +14,8 @@
 
 #include "main.h"
 
+int rounds = 50;
+
 void usage(void)
 {
     puts("dpdk-replay [OPTIONS] PCAP_FILE PORT1[,PORTX...]\n"
@@ -125,6 +127,13 @@ int parse_options(const int ac, char** av, struct cmd_opts* opts)
         /* --wait-enter */
         if (!strcmp(av[i], "--wait-enter")) {
             opts->wait = 1;
+            continue;
+        }
+
+        /* --break-rounds */
+        if (!strcmp(av[i], "--break-rounds")) {
+            rounds = atoi(av[i + 1]);
+            i++;
             continue;
         }
 

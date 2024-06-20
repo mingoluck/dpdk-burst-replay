@@ -283,7 +283,7 @@ int tx_thread(void* thread_ctx)
     struct rte_mbuf**   mbuf;
     struct timespec     start, end;
     unsigned int        tx_queue;
-    int                 ret, thread_id, index, i, run_cpt, retry_tx;
+    int                 ret, thread_id, index, i, j, run_cpt, retry_tx;
     int                 nb_sent, to_sent, total_to_sent, total_sent;
     int                 nb_drop;
 
@@ -314,6 +314,8 @@ int tx_thread(void* thread_ctx)
         return (errno);
     }
 
+    j = 0;
+    printf("wait rounds=%d\n", rounds);
     /* iterate on each wanted runs */
     for (run_cpt = ctx->nbruns, tx_queue = ctx->total_drop = ctx->total_drop_sz = 0;
          run_cpt;
@@ -334,7 +336,12 @@ int tx_thread(void* thread_ctx)
                                            (tx_queue++ % NB_TX_QUEUES),
                                            &(mbuf[index + total_sent]),
                                            to_sent - total_sent);
-                usleep(1);
+                if(j < rounds) {
+                    j++; 
+                } else {
+                    j = 0;
+                    usleep(1);
+                }
                 if (retry_tx != NB_RETRY_TX &&
                     tx_queue % NB_TX_QUEUES == 0)
                     usleep(100);
