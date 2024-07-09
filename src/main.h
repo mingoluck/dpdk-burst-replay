@@ -37,6 +37,7 @@
      || defined RTE_VER_YEAR && RTE_VER_YEAR >= year)
 
 extern int rounds;
+extern int ustime;
 
 /* struct to store the command line args */
 struct cmd_opts {

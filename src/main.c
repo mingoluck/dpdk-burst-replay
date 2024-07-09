@@ -15,6 +15,7 @@
 #include "main.h"
 
 int rounds = 50;
+int ustime = 100;
 
 void usage(void)
 {
@@ -133,6 +134,13 @@ int parse_options(const int ac, char** av, struct cmd_opts* opts)
         /* --break-rounds */
         if (!strcmp(av[i], "--break-rounds")) {
             rounds = atoi(av[i + 1]);
+            i++;
+            continue;
+        }
+
+        /* --usleep-time */
+        if (!strcmp(av[i], "--usleep-time")) {
+            ustime = atoi(av[i + 1]);
             i++;
             continue;
         }
