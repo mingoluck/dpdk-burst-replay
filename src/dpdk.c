@@ -316,6 +316,7 @@ int tx_thread(void* thread_ctx)
 
     j = 0;
     printf("wait rounds=%d\n", rounds);
+    printf("usleep time=%d\n", ustime);
     /* iterate on each wanted runs */
     for (run_cpt = ctx->nbruns, tx_queue = ctx->total_drop = ctx->total_drop_sz = 0;
          run_cpt;
