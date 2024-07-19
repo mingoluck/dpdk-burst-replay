@@ -341,7 +341,7 @@ int tx_thread(void* thread_ctx)
                     j++; 
                 } else {
                     j = 0;
-                    usleep(ustime);
+                    rte_delay_us(ustime);
                 }
                 if (retry_tx != NB_RETRY_TX &&
                     tx_queue % NB_TX_QUEUES == 0)
